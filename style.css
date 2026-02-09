@@ -5,7 +5,7 @@ body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-he
 html{scroll-behavior:smooth}
 
 /* HEADER */
-.header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;transition:box-shadow .3s,padding .3s}
+.header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;transition:box-shadow .3s,padding .3s}
 .header.scrolled{box-shadow:var(--shadow);padding:12px 40px}
 .logo{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);text-decoration:none}
 .nav{display:flex;gap:32px;align-items:center}
@@ -86,6 +86,7 @@ section{padding:80px 40px}
 .followup-btn{background:var(--bg-soft);border:1px solid var(--border);border-radius:100px;padding:8px 16px;cursor:pointer;font-family:var(--font-body);font-size:.85rem;color:var(--text);transition:all .2s}
 .followup-btn:hover{border-color:var(--primary);color:var(--primary)}
 .followup-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
+.followup-prompt{font-weight:500;color:var(--dark);margin-top:8px}
 .followup-detail{display:none;margin-top:12px;padding:16px;background:var(--bg-soft);border-radius:var(--radius-sm);font-size:.9rem;color:var(--text);line-height:1.7}
 .followup-detail.visible{display:block;animation:slideIn .2s ease}
 
@@ -155,6 +156,7 @@ section{padding:80px 40px}
 .about-heading{font-family:var(--font-display);font-size:1.8rem;color:var(--dark);line-height:1.3;margin-bottom:24px}
 .about-paragraph{color:var(--text);font-size:1.02rem;margin-bottom:16px;line-height:1.8}
 .about-quote{margin:28px 0;padding:20px 24px;background:var(--bg-soft);border-left:4px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--dark);font-size:1rem;font-weight:500;line-height:1.7}
+.values-heading{font-family:var(--font-display);font-size:2rem;text-align:center;color:var(--dark);margin-bottom:8px}
 .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
 .value-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:center;box-shadow:var(--card-glow);transition:transform .3s,box-shadow .3s}
 .value-card:hover{transform:translateY(-4px);box-shadow:var(--card-glow-hover)}
@@ -192,7 +194,7 @@ section{padding:80px 40px}
 /* FOOTER */
 footer{background:var(--dark);color:rgba(255,255,255,.7);padding:40px 24px;text-align:center;font-size:.85rem;border-top:3px solid var(--accent)}
 footer a{color:rgba(255,255,255,.9);text-decoration:none}
-footer .credit{margin-top:8px;font-size:.78rem;opacity:.5}
+footer .credit{margin-top:8px;font-size:.78rem;opacity:.7}
 
 /* WHATSAPP FLOAT */
 .whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:var(--whatsapp);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(37,211,102,.4);z-index:1000;transition:transform .3s;text-decoration:none}
@@ -245,4 +247,76 @@ footer .credit{margin-top:8px;font-size:.78rem;opacity:.5}
   .service-card img{transition:none}
   .faq-item{transition:none}
   html{scroll-behavior:auto}
+}
+
+/* FOCUS VISIBLE â€” keyboard accessibility */
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:var(--radius-sm)}
+.btn-primary:focus-visible,.btn-secondary:focus-visible,.btn-accent:focus-visible,.cta-banner .btn-white:focus-visible{box-shadow:0 0 0 3px var(--primary),0 0 0 5px white;outline:none}
+.nav-cta:focus-visible{box-shadow:0 0 0 3px white,0 0 0 5px var(--primary);outline:none}
+.symptom-btn:focus-visible,.followup-btn:focus-visible,.faq-question:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.whatsapp-float:focus-visible{box-shadow:0 0 0 3px var(--whatsapp),0 0 0 5px white;outline:none}
+footer a:focus-visible{outline:2px solid rgba(255,255,255,.8);outline-offset:3px}
+.process-section :focus-visible{outline-color:rgba(255,255,255,.8)}
+
+/* DARK MODE */
+@media(prefers-color-scheme:dark){
+  :root{--bg:#1a1f2e;--bg-soft:#222838;--bg-alt:#1e2333;--text:#e0e4eb;--text-light:#b0b8c8;--border:#2d3548;--dark:#0d1117;--shadow:0 2px 16px rgba(0,0,0,.2);--shadow-lg:0 8px 32px rgba(0,0,0,.3);--card-glow:0 2px 16px rgba(0,0,0,.2),0 0 0 1px rgba(255,255,255,.05);--card-glow-hover:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.08)}
+  body{background:var(--bg);color:var(--text)}
+  .header{background:rgba(26,31,46,.95)}
+  .logo{color:var(--primary-light)}
+  .nav a{color:var(--text-light)}
+  .mobile-menu{background:var(--bg)}
+  .benefit-card,.review-card,.contact-card,.service-card,.faq-item,.diagnostician{background:var(--bg-soft)}
+  .benefit-card:hover,.review-card:hover,.service-card:hover{box-shadow:var(--card-glow-hover)}
+  /* Headings â€” sve koje koriste color:var(--dark) moraju biti svetle u dark mode */
+  .benefit-card h3,.service-card h3,.contact-card h3,.value-card h3,.review-author,.symptom-result h3{color:#e8ecf1}
+  .hero h1,.page-hero h1,.section-title,.about-heading,.diagnostician h2,.values-heading{color:#e8ecf1}
+  .followup-prompt{color:#e8ecf1}
+  /* Body text â€” pojaÄan contrast */
+  .benefit-card p,.service-card p,.value-card p,.about-paragraph,.contact-card p,.review-text,.faq-answer-inner,.symptom-result>p,.diagnostician>p{color:#b0b8c8}
+  /* Primary-colored text â€” svetliji u dark mode */
+  .stat-item .counter-value,.stat-item .stat-suffix,.service-price{color:var(--primary-light)}
+  .section-label{color:var(--accent-light)}
+  .hero-badge strong{color:var(--accent-light)}
+  .faq-icon{color:var(--primary-light)}
+  .faq-question{background:var(--bg-soft);color:var(--text)}
+  .faq-question:hover{background:var(--bg-alt)}
+  .faq-section{background:var(--bg-alt)}
+  .section-gradient{background:var(--bg-alt)}
+  .page-hero{background:var(--bg-soft)}
+  .hero-image-badge{background:var(--bg-soft);color:var(--text)}
+  .symptom-btn{background:var(--bg-soft);color:var(--text);border-color:var(--border)}
+  .symptom-result{background:var(--bg-soft);border-left-color:var(--accent)}
+  .followup-detail{background:var(--bg-alt)}
+  .about-quote{background:var(--bg-alt);color:var(--text)}
+  .value-card{background:var(--bg-soft);border-color:var(--border)}
+  .service-card-body{background:var(--bg-soft)}
+  .stat-item + .stat-item::before{background:var(--border)}
+  .stat-item{border-bottom-color:var(--border)}
+  .contact-link{border-bottom-color:var(--border);color:var(--primary-light)}
+  .hours-table td{border-bottom-color:var(--border);color:var(--text)}
+  .review-quote{background:var(--bg-alt)}
+  .hero-badge{background:var(--bg-soft)}
+  .info-item{color:var(--text-light)}
+  .info-item strong{color:var(--text)}
+  .review-quote span{color:var(--text)}
+  :focus-visible{outline-color:var(--primary-light)}
+  footer a:focus-visible,.process-section a:focus-visible,.process-section button:focus-visible{outline-color:#fff}
+}
+
+/* PRINT */
+@media print{
+  .header,.mobile-menu,.whatsapp-float,.cta-banner,.hamburger{display:none!important}
+  body{background:white;color:black;font-size:12pt}
+  section{padding:20px 0}
+  .hero{padding:20px 0}
+  .hero-image{display:none}
+  a{color:black;text-decoration:underline}
+  .btn-primary,.btn-secondary,.btn-accent,.btn-white{display:none}
+  .fade-in{opacity:1;transform:none}
+  .benefit-card,.review-card,.service-card,.value-card,.contact-card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
+  .process-section{background:#2c3e50!important}
+  .process-step h3,.process-step p,.process-section .section-title,.process-section .section-label{color:white!important}
+  .map-section{display:none!important}
+  footer{border-top:1px solid #ccc;background:white;color:black}
 }
